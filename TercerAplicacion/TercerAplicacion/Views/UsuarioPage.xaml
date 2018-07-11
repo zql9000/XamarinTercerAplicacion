@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TercerAplicacion.Views.UsuarioPage">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="tplUsuario">
+            <ViewCell>
+                <Grid>
+                    <Label Text="{Binding name}" Grid.Column="0" />
+                    <Label Text="{Binding email}" Grid.Column="1" />
+                    <Label Text="{Binding website}" Grid.Column="2" />
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Usuarios:" HorizontalOptions="CenterAndExpand" />
+            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
+            <ScrollView>
+                <ListView x:Name="lstUsuarios"
+                        ItemTemplate="{StaticResource tplUsuario}"
+                        IsPullToRefreshEnabled="True"
+                        RefreshCommand="{Binding CargarUsuariosCommand}" />
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
