@@ -17,12 +17,14 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Usuarios:" HorizontalOptions="CenterAndExpand" />
-            <ActivityIndicator IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" />
             <ScrollView>
                 <ListView x:Name="lstUsuarios"
                         ItemTemplate="{StaticResource tplUsuario}"
+                        ItemsSource="{Binding Usuarios}"
                         IsPullToRefreshEnabled="True"
-                        RefreshCommand="{Binding CargarUsuariosCommand}" />
+                        IsRefreshing="{Binding IsBusy}"
+                        RefreshCommand="{Binding CargarUsuariosCommand}"
+                        HasUnevenRows="True" />
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>

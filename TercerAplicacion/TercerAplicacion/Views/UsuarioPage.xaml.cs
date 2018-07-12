@@ -18,10 +18,7 @@ namespace TercerAplicacion.Views
 		{
 			InitializeComponent();
 
-            viewModel = new UsuarioViewModel();
-            BindingContext = viewModel;
-
-            lstUsuarios.ItemsSource = viewModel.Usuarios;
+            BindingContext = viewModel = new UsuarioViewModel();
         }
 
         protected override void OnAppearing()

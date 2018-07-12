@@ -34,6 +34,7 @@ namespace TercerAplicacion.ViewModels
                 Usuarios.Clear();
                 var service = new UsuarioService();
                 Usuarios = new ObservableCollection<Usuario>(await service.GetUsuariosAsync());
+                OnPropertyChanged("Usuarios");
             }
             catch (Exception ex)
             {
