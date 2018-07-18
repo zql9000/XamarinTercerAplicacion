@@ -22,7 +22,7 @@
                         ItemTemplate="{StaticResource tplUsuario}"
                         ItemsSource="{Binding Usuarios}"
                         IsPullToRefreshEnabled="True"
-                        IsRefreshing="{Binding IsBusy}"
+                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                         RefreshCommand="{Binding CargarUsuariosCommand}"
                         HasUnevenRows="True" />
             </ScrollView>

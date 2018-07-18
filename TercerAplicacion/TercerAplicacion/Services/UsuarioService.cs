@@ -23,14 +23,25 @@ namespace TercerAplicacion.Services
         {
             List<Usuario> usuarios = null;
 
-            var uri = new Uri(url);
-
-            var response = await client.GetAsync(uri);
-
-            if (response.IsSuccessStatusCode)
+            if (App.Current.Properties.ContainsKey(AppSettings.ClaveUsuario))
             {
-                var content = await response.Content.ReadAsStringAsync();
-                usuarios = JsonConvert.DeserializeObject<List<Usuario>>(content);
+                usuarios = JsonConvert.DeserializeObject<List<Usuario>>(App.Current.Properties[AppSettings.ClaveUsuario].ToString());
+                //usuarios = (List<Usuario>)App.Current.Properties[AppSettings.ClaveUsuario + "1"];
+            }
+            else
+            {
+                var uri = new Uri(url);
+
+                var response = await client.GetAsync(uri);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string content = await response.Content.ReadAsStringAsync();
+                    usuarios = JsonConvert.DeserializeObject<List<Usuario>>(content);
+                    App.Current.Properties[AppSettings.ClaveUsuario] = content;
+                    //App.Current.Properties[AppSettings.ClaveUsuario+"1"] = usuarios;
+                    await App.Current.SavePropertiesAsync();
+                }
             }
 
             return usuarios;

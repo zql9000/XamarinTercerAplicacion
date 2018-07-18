@@ -13,9 +13,16 @@ namespace TercerAplicacion
 		{
 			InitializeComponent();
 
+            //MainPage = new UsuarioPage();
 
-			MainPage = new UsuarioPage();
-		}
+            MainPage = new MasterDetailPage() {
+                Master = new MenuPage(),
+                Detail = new NavigationPage(new UsuarioPage()),
+                //MasterBehavior = MasterBehavior.Split,
+                //Icon = ""                
+            };
+
+        }
 
 		protected override void OnStart ()
 		{
